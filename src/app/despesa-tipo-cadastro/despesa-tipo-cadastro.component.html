@@ -1,0 +1,51 @@
+<main class="container">
+
+  <h3 class="mt-4">
+    {{tituloPagina}}
+  </h3>
+
+  <h1>{{expenseType}}</h1>
+  <h1>{{expenseType.Name}}</h1>
+
+  <div class="row">
+    <div class="caixa-central">
+      <legend>Informações da despesa</legend>
+
+      <form class="col-md-12">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Name">Nome</label>
+            <input required type="text" class="form-control" placeholder="Titulo" [(ngModel)]="expenseType.Name" name="Name">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="IsActive">Ativo</label>
+            <select class="form-control" id="listIsActive" [(ngModel)]="expenseType.IsActive" name="IsActive">
+              <option [value]="undefined">Selecione...</option>
+              <option [value]="true">Sim</option>
+              <option [value]="false">Não</option>
+            </select>
+          </div>
+
+        </div>
+
+
+        <div class="form-row mt-3">
+
+          <button [disabled]="!(expenseType.Name)" type="button" (click)="Salvar(expense)" class="btn btn-success mr-2">
+            <span class="fa fa-save" aria-hidden="true"></span>
+            Salvar
+          </button>
+
+          <a routerLink="/despesas" class="btn btn-danger">
+            <span class="fa fa-undo" aria-hidden="true"></span>
+            Voltar
+          </a>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>

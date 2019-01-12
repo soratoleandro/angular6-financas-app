@@ -1,0 +1,85 @@
+<main class="container">
+
+  <h3 class="mt-4">
+    {{tituloPagina}}
+  </h3>
+
+  <div class="row">
+    <div class="caixa-central">
+      <legend>Dados da despesa</legend>
+
+      <form class="col-md-12">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Name">Titulo</label>
+            <input required type="text" class="form-control" placeholder="Titulo" [(ngModel)]="expense.Name" name="Name">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="ExpenseTypeId">Tipo da despesa</label>
+            <select class="form-control" id="listExpenseType" [(ngModel)]="expense.ExpenseTypeId" name="ExpenseTypeId">
+              <option [value]="undefined">Selecione...</option>
+              <option *ngFor="let expenseType of listaExpenseType" [value]="expenseType.Id">{{expenseType.Name}}</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="Value">Valor</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input type="number" placeholder="0,00" class="form-control" [(ngModel)]="expense.Value" name="Value">
+            </div>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="Payed">Pago</label>
+            <select class="form-control" id="listPayed" [(ngModel)]="expense.Payed" name="Payed">
+              <option [value]="undefined">Selecione...</option>
+              <option [value]="true">Sim</option>
+              <option [value]="false">Não</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="dataPagamento">Data pagamento</label>
+            <div class="input-group">
+              <input type="date" class="form-control" name="dataPagamento" placeholder="dd/mm/yyyy" [(ngModel)]="dataPagamento" ngbDatepicker
+                #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle();" type="button">
+                  <img src="../../assets/img/calendar-icon.svg" class="date-picker" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="Comments">Observação</label>
+          <input type="text" class="form-control" placeholder="Observação" [(ngModel)]="expense.Comments" name="Comments">
+        </div>
+
+        <div class="form-row mt-3">
+
+          <button [disabled]="!(expense.Name)" type="button" (click)="Salvar(expense)" class="btn btn-success mr-2">
+            <span class="fa fa-save" aria-hidden="true"></span>
+            Salvar
+          </button>
+
+          <a routerLink="/despesas" class="btn btn-danger">
+            <span class="fa fa-undo" aria-hidden="true"></span>
+            Voltar
+          </a>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
