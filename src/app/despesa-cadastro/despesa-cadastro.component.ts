@@ -32,9 +32,9 @@ export class DespesaCadastroComponent implements OnInit {
 
   ngOnInit() {
 
-    this.spinner.show();
-
     let expenseId = this.rotaAtiva.snapshot.params.id;
+
+    this.spinner.show();
 
     this.CarregarListaExpenseType();
 
@@ -42,26 +42,41 @@ export class DespesaCadastroComponent implements OnInit {
 
       this.tituloPagina = 'Atualização de despesa';
 
-      this.expenseService.Pesquisar(expenseId).subscribe(resp => {
-        this.expense = resp;
-        this.dataPagamento = {
-          day: new Date(resp.TargetDate).getDate(),
-          month: new Date(resp.TargetDate).getMonth() + 1,
-          year: new Date(resp.TargetDate).getFullYear()
-        };
-      });
+      this.expenseService
+        .Pesquisar(expenseId)
+        .subscribe(
+          resp => {
+            this.expense = resp;
+            this.dataPagamento = {
+              day: new Date(resp.TargetDate).getDate(),
+              month: new Date(resp.TargetDate).getMonth() + 1,
+              year: new Date(resp.TargetDate).getFullYear()
+            };
+          },
+          err => {
+            this.roteamento.navigate(['/error']);
+            this.spinner.hide();
+          }
+        );
     }
     else {
       this.tituloPagina = 'Cadastro de despesa';
     }
   }
-  
+
   CarregarListaExpenseType() {
-    
-    this.expenseTypeService.Listar().subscribe(resp => {
-      this.listaExpenseType = resp;
-      this.spinner.hide();
-    });
+
+    this.expenseTypeService.Listar()
+      .subscribe(
+        resp => {
+          this.listaExpenseType = resp;
+          this.spinner.hide();
+        },
+        err => {
+          this.roteamento.navigate(['/error']);
+          this.spinner.hide();
+        }
+      );
   }
 
   Salvar(expense: Expense) {
@@ -73,17 +88,32 @@ export class DespesaCadastroComponent implements OnInit {
     }
 
     if (expense.Id) {
-      this.expenseService.Atualizar(expense).subscribe(resp => {
-        this.spinner.hide();
-        this.toastrService.success('Atualizado com sucesso', 'Atualizar', { closeButton: true, timeOut: 4000, progressBar: true });
-        this.roteamento.navigate(['/despesas'])
-      });
+      this.expenseService.Atualizar(expense)
+        .subscribe(
+          resp => {
+            this.toastrService.success('Atualizado com sucesso', 'Atualizar', { timeOut: 4000, progressBar: true });
+            this.roteamento.navigate(['/despesas'])
+            this.spinner.hide();
+          },
+          err => {
+            this.toastrService.warning('Ocorreu um erro ao atualizar', 'Atenção');
+            this.spinner.hide();
+          }
+        );
     }
     else {
-      this.expenseService.Cadastrar(expense).subscribe(resp => {
-        this.spinner.hide();
-        this.toastrService.success('Cadastrado com sucesso', 'Cadastrar', { closeButton: true, timeOut: 4000, progressBar: true });
-      });
+      this.expense.IsActive = true;
+      this.expenseService.Cadastrar(expense)
+        .subscribe(
+          resp => {
+            this.toastrService.success('Cadastrado com sucesso', 'Cadastrar', { timeOut: 4000, progressBar: true });
+            this.spinner.hide();
+          },
+          err => {
+            this.toastrService.warning('Ocorreu um erro ao cadastrar', 'Atenção');
+            this.spinner.hide();
+          }
+        );
     }
 
     this.expense = new Expense();

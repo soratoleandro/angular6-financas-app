@@ -17,7 +17,7 @@ interface IExpense {
 export class Expense implements IExpense {
     Id;
     Name = '';
-    IsActive = false;
+    IsActive = true;
     CreationDate = new Date();
     UpdateDate;
     Payed;

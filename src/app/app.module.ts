@@ -18,6 +18,7 @@ import { DespesaListagemComponent } from './despesa-listagem/despesa-listagem.co
 import localePt from '@angular/common/locales/pt';
 import { FilterPipe } from './despesa-listagem/despesa-listagem.pipe';
 import { DespesaTipoCadastroComponent } from './despesa-tipo-cadastro/despesa-tipo-cadastro.component';
+import { ErrorInternalComponent } from './error-internal/error-internal.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -28,7 +29,8 @@ registerLocaleData(localePt, 'pt');
     ErrorNotFoundComponent,
     DespesaCadastroComponent,
     DespesaListagemComponent,
-    DespesaTipoCadastroComponent
+    DespesaTipoCadastroComponent,
+    ErrorInternalComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ interface IExpenseType {
 export class ExpenseType implements IExpenseType {
     Id;
     Name = '';
-    IsActive = false;
+    IsActive = true;
     CreationDate = new Date();
     UpdateDate;
 }

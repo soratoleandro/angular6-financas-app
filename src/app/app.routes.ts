@@ -3,6 +3,7 @@ import { ErrorNotFoundComponent } from "./error-not-found/error-not-found.compon
 import { DespesaListagemComponent } from "./despesa-listagem/despesa-listagem.component";
 import { DespesaCadastroComponent } from "./despesa-cadastro/despesa-cadastro.component";
 import { DespesaTipoCadastroComponent } from "./despesa-tipo-cadastro/despesa-tipo-cadastro.component";
+import { ErrorInternalComponent } from "./error-internal/error-internal.component";
 
 const appRoutes: Routes = [
 
@@ -13,7 +14,9 @@ const appRoutes: Routes = [
     { path: 'editar-despesa/:id', component: DespesaCadastroComponent },
 
     { path: 'cadastrar-despesa-tipo', component: DespesaTipoCadastroComponent },
+    { path: 'editar-despesa-tipo/:id', component: DespesaTipoCadastroComponent },
 
+    { path: 'error', component: ErrorInternalComponent },
     { path: '**', component: ErrorNotFoundComponent }
 ];
 
