@@ -29,7 +29,7 @@
 
         <div class="form-row mt-3">
 
-          <button [disabled]="!(expenseType.Name) || (expenseType.IsActive == 'undefined')" type="button" (click)="Salvar(expenseType)" class="btn btn-success mr-2">
+          <button [disabled]="!(expenseType.Name)" type="button" (click)="Salvar(expenseType)" class="btn btn-success mr-2">
             <span class="fa fa-save" aria-hidden="true"></span>
             Salvar
           </button>
