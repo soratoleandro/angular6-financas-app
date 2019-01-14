@@ -60,7 +60,7 @@ export class DespesaTipoCadastroComponent implements OnInit {
         .subscribe(
           resp => {
             this.toastrService.success('Atualizado com sucesso', 'Atualizar', { timeOut: 4000, progressBar: true });
-            this.roteamento.navigate(['/despesas-tipo']);
+            this.roteamento.navigate(['/']);
             this.spinner.hide();
           },
           err => {

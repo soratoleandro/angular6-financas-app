@@ -40,7 +40,7 @@ export class DespesaListagemComponent implements OnInit {
           this.spinner.hide();
         },
         err => {
-          this.roteamento.navigate(['/error']);
+          this.toastrService.warning('Ocorreu um erro ao carregar a página.', 'Atenção');
           this.spinner.hide();
         }
       );

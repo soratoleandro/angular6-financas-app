@@ -13,6 +13,7 @@ const appRoutes: Routes = [
     { path: 'cadastrar-despesa', component: DespesaCadastroComponent },
     { path: 'editar-despesa/:id', component: DespesaCadastroComponent },
 
+    
     { path: 'cadastrar-despesa-tipo', component: DespesaTipoCadastroComponent },
     { path: 'editar-despesa-tipo/:id', component: DespesaTipoCadastroComponent },
 

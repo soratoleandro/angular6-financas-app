@@ -54,7 +54,7 @@ export class DespesaCadastroComponent implements OnInit {
             };
           },
           err => {
-            this.roteamento.navigate(['/error']);
+            this.toastrService.warning('Ocorreu um erro ao carregar a página.', 'Atenção');
             this.spinner.hide();
           }
         );
@@ -73,7 +73,7 @@ export class DespesaCadastroComponent implements OnInit {
           this.spinner.hide();
         },
         err => {
-          this.roteamento.navigate(['/error']);
+          this.toastrService.warning('Ocorreu um erro ao carregar a página.', 'Atenção');
           this.spinner.hide();
         }
       );
